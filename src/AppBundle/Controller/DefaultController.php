@@ -108,11 +108,8 @@ class DefaultController extends Controller
             $cmd = "/usr/bin/ffmpeg -i " . $mp3FilePath . " -acodec pcm_u8 -ar 22050 " . $finalFile . " 2> /dev/null";
             exec($cmd);
 
-            if( is_file($finalFile) && filesize($finalFile) > 0 )
-                unlink($mp3FilePath);
-            else
+            if( !(is_file($finalFile) && filesize($finalFile) > 0) )
                 return new JsonResponse('error');
-
 
             return new JsonResponse(array("filename"=>$finalFile));
 
