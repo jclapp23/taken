@@ -231,7 +231,7 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
 
                     <div class=\"audio-player\" style=\"display:none\">
                         <audio  controls >
-                            <source src=\"#\" type=\"audio/mpeg\">
+                            <source src=\"#\">
                             Your browser does not support the audio element.
                         </audio>
                         <p>Want to save MP3 file? Just right click audio player above and choose Save Audio As.</p>
@@ -260,10 +260,8 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
 
         \$(function() {
 
-
-
             var emailFileUrl = '";
-        // line 230
+        // line 228
         echo $this->env->getExtension('routing')->getUrl("email_file");
         echo "';
 
@@ -290,7 +288,7 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
             });
 
             var storyOneUrl = '";
-        // line 254
+        // line 252
         echo $this->env->getExtension('routing')->getUrl("story_one");
         echo "';
 
@@ -307,7 +305,8 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
                     if(data.filename){
 
                         \$('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
-                        \$('.audio-player').attr(\"src\",data.filename).show();
+                        \$('.audio-player audio').attr(\"src\",data.filename).show();
+                        \$('.audio-player').show();
                         \$('#emailToFriend').attr(\"data-file\",data.filename);
                         \$('.madlib-actions').show();
 
@@ -321,7 +320,7 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
             });
 
             var storyTwoUrl = '";
-        // line 282
+        // line 281
         echo $this->env->getExtension('routing')->getUrl("story_two");
         echo "';
 
@@ -341,7 +340,8 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
                     if(data.filename){
 
                         \$('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
-                        \$('.audio-player').attr(\"src\",data.filename).show();
+                        \$('.audio-player audio').attr(\"src\",data.filename).show();
+                        \$('.audio-player').show();
                         \$('#emailToFriend').attr(\"data-file\",data.filename);
                         \$('.madlib-actions').show();
 
@@ -373,6 +373,6 @@ class __TwigTemplate_bea5261efddd2f0b7769eb298e40de1a94e0c7a083696990bc62868beaf
 
     public function getDebugInfo()
     {
-        return array (  325 => 282,  294 => 254,  267 => 230,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  324 => 281,  292 => 252,  265 => 228,  39 => 4,  36 => 3,  11 => 1,);
     }
 }
