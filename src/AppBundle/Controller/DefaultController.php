@@ -66,10 +66,6 @@ class DefaultController extends Controller
 
             $finalFile = $this->combineMultipleMP3Files('final'.uniqid().'.mp3', $files);
 
-            foreach($files as $file){
-                unlink($file);
-            }
-
             return new JsonResponse(array("filename"=>$finalFile));
 
         }else{

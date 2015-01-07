@@ -98,3 +98,9 @@ fb13e3,127.0.0.1,GET,http://localhost:8071/app_dev.php/,1420650874,
 cf000f,127.0.0.1,GET,http://localhost:8071/app_dev.php/,1420650894,
 9e303d,127.0.0.1,GET,http://localhost:8071/app_dev.php/,1420651226,
 ec8bb7,127.0.0.1,GET,http://localhost:8071/app_dev.php/,1420651226,
+70778b,127.0.0.1,GET,http://localhost:8071/app_dev.php/,1420651488,
+8fe9ba,127.0.0.1,GET,http://localhost:8071/app_dev.php/,1420651488,
+168746,127.0.0.1,GET,http://localhost:8071/app_dev.php/story-one,1420651578,8205e5
+8205e5,127.0.0.1,POST,http://localhost:8071/app_dev.php/story-one,1420651578,
+961e9f,127.0.0.1,GET,http://localhost:8071/app_dev.php/story-one,1420651628,fc1c2d
+fc1c2d,127.0.0.1,POST,http://localhost:8071/app_dev.php/story-one,1420651628,
