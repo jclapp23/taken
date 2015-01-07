@@ -36,10 +36,11 @@ class DefaultController extends Controller
             $fileName = $webDir . "/" .$file;
 
             $message = \Swift_Message::newInstance()
-                ->setTo([$email,'contact@setfive.com'])
+                ->setTo([$email])
+                ->setBcc(['contact@setfive.com'])
                 ->setFrom('TakenMadlibs@setfive.com')
                 ->setSubject("Someone has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Attached is the mp3 file containing the audio madlib created via http://taken.setfive.com/, enjoy!",'text/html')
+                ->setBody("Attached is the wav file containing the audio madlib someone created for you via http://taken.setfive.com/, enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));
@@ -92,12 +93,26 @@ class DefaultController extends Controller
 
             foreach($lines as $k=>$line){
                 $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
-                //$files[] = $baseFilePath.$takenFileNames[$k];
+                $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
             $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
 
-            $finalFile = $this->combineMultipleMP3Files('final'.uniqid().'.mp3', $files);
+            $mp3File = $this->combineMultipleMP3Files('final'.uniqid().'.mp3', $files);
+
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
+            $mp3FilePath = $webDir . "/" .$mp3File;
+
+            $finalFile = $webDir . "/" ."taken_madlib_". uniqid();
+
+            $cmd = "/usr/bin/ffmpeg -i " . $mp3FilePath . " -acodec pcm_u8 -ar 22050 " . $finalFile . " 2> /dev/null";
+            exec($cmd);
+
+            if( is_file($finalFile) && filesize($finalFile) > 0 )
+                unlink($mp3FilePath);
+            else
+                return new JsonResponse('error');
+
 
             return new JsonResponse(array("filename"=>$finalFile));
 
