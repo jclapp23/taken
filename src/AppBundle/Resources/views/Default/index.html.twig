@@ -4,30 +4,20 @@
 <!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="index.html#home">Minimal</a></h1>
+			<h1 class="logo"><a href="#home" class="smoothScroll">Taken Madlibs</a></h1>
 			<i class="icon-remove menu-close"></i>
-			<a href="#home" class="smoothScroll">Home</a>
-			<a href="#about" class="smoothScroll">About</a>
-			<a href="#portfolio" class="smoothScroll">Portfolio</a>
-			<a href="#contact" class="smoothScroll">Contact</a>
-			<a href="#"><i class="icon-facebook"></i></a>
-			<a href="#"><i class="icon-twitter"></i></a>
-			<a href="#"><i class="icon-dribbble"></i></a>
-			<a href="#"><i class="icon-envelope"></i></a>
+			<a href="#story-one-form" class="smoothScroll">A Mysterious Call</a>
+			<a href="#story-two-form" class="smoothScroll">Confused Telemarketer</a>
 		</div>
 		
 		<!-- Menu button -->
-		<!--<div id="menuToggle"><i class="icon-reorder"></i></div>-->
+		<div id="menuToggle"><i class="icon-reorder"></i></div>
 	</nav>
 
 	<!-- ========== HEADER SECTION ========== -->
 	<section id="home" name="home"></section>
 	<div id="headerwrap">
 		<div class="container">
-			<!--<div class="logo">
-				<img src="{{ asset('bundles/app/img/logo.png') }}">
-			</div>
-			<br>-->
 			<div class="row">
 				<h1>TAKEN AUDIO MADLIBS</h1>
 				<div class="col-lg-6 col-lg-offset-3">
@@ -49,7 +39,7 @@
                     <form id="story-one-form" class="form-horizontal" >
                         <fieldset>
 
-                       <p class="text-center">Story One: A Mysterious Call</p>
+                         <p class="text-center">Story One: A Mysterious Call</p>
 
                              <div class="form-group">
                                 <label for="animalOne" class="control-label col-xs-2">Animal One</label>
@@ -107,13 +97,83 @@
                             </div>
                             <div class="form-group">
                                 <div>
-                                    <button type="submit" class="btn btn-primary">Generate Audio Madlib</button>
+                                    <button type="submit" class="btn btn-primary">Submit Story One</button>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
-				</div>								
-			</div>
+				</div>
+
+                <div class="col-lg-6 col-lg-offset-3">
+                    <form id="story-two-form" class="form-horizontal" >
+                        <fieldset>
+                            <p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
+                            <p class="text-center">Story Two: Confused Telemarketer</p>
+
+                            <div class="form-group">
+                                <label for="animalOne" class="control-label col-xs-2">Animal One</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="animalOne" name="animal_one" placeholder="Enter an animal" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="personName" class="control-label col-xs-2">Person Name</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="personName" name="person_name" placeholder="Enter name of a person you know" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="placeYouDislike" class="control-label col-xs-2">Place you dislike</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="placeYouDislike" name="place_you_dislike" placeholder="Enter the name of a place you dislike" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="animalTwo" class="control-label col-xs-2">Animal Two</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="animalTwo" name="animal_two" placeholder="Enter a different animal than above" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pastTenseVerb" class="control-label col-xs-2">Past Tense Verb</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="pastTenseVerb" name="past_tense_verb" placeholder="Enter a past tense verb, ie 'destroyed' " required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="somethingYouValue" class="control-label col-xs-2">Something You Value</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="somethingYouValue" name="something_you_value" placeholder="Enter something you value (noun)" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country" class="control-label col-xs-2">Name of a Country</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="country" name="country" placeholder="Enter the name of a country" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pluralNoun" class="control-label col-xs-2">Plural Noun</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="pluralNoun" name="plural_noun" placeholder="Enter a plural noun" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="singularNoun" class="control-label col-xs-2">Singular Noun</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="singularNoun" name="singular_noun" placeholder="Enter a singular noun" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Submit Story Two</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
 		</div><!-- /container -->
 	</div><!-- /f -->
 
@@ -139,17 +199,22 @@
                             <source src="#" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
-                        <p>Want to save MP3 file? Just right click audio player above and save as.</p>
+                        <p>Want to save MP3 file? Just right click audio player above and choose Save Audio As.</p>
                     </div>
 
-                    <div class="btn-group madlib-actions" role="group" aria-label="..." style="display:none">
-                        <button type="button" class="btn btn-default">Email to a friend</button>
-                    </div>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="enter email" required><br>
+
+                    <div class="madlib-actions" style="display:none">
+                        <button id="emailToFriend" type="button" data-file="" class="btn btn-info">Email to a friend</button>
+                    </div><br>
+
+                    <p class="email-success alert alert-success" style="display:none" >Your email has been sent!</p>
+                    <p class="email-error alert alert-danger" style="display:none" >There was an error sending email!</p>
+
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -159,6 +224,32 @@
     <script>
 
         $(function() {
+
+
+
+            var emailFileUrl = '{{ url('email_file') }}';
+
+            $('#emailToFriend').on("click",function(){
+
+                if($('#email').val() == ''){
+                    alert('You must enter an email!');
+                    return false;
+                }
+
+                $.ajax({
+                    url: emailFileUrl,
+                    type: "post",
+                    data: { email: $('#email').val(), file: $(this).attr("data-file") }
+                }).done(function (data){
+
+                    if(data.isSent)
+                        $('.email-success').show();
+                    else
+                        $('.email-error').show();
+
+                });
+
+            });
 
             var storyOneUrl = '{{ url('story_one') }}';
 
@@ -174,8 +265,9 @@
 
                     if(data.filename){
 
-                        $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-striped').addClass('progress-bar-success');
+                        $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
                         $('.audio-player').attr("src",data.filename).show();
+                        $('#emailToFriend').attr("data-file",data.filename);
                         $('.madlib-actions').show();
 
                     }else{
@@ -186,6 +278,38 @@
                 return false;
 
             });
+
+            var storyTwoUrl = '{{ url('story_two') }}';
+
+            $('#story-two-form').on("submit",function(){
+
+                alert('coming soon!');
+                return false;
+
+                $('#modal').modal('show');
+
+                $.ajax({
+                    url: storyTwoUrl,
+                    type: "post",
+                    data: $(this).serialize()
+                }).done(function (data){
+
+                    if(data.filename){
+
+                        $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
+                        $('.audio-player').attr("src",data.filename).show();
+                        $('#emailToFriend').attr("data-file",data.filename);
+                        $('.madlib-actions').show();
+
+                    }else{
+                        alert('Woops! Something went wrong..');
+                    }
+                });
+
+                return false;
+
+            })
+
         });
 
     </script>

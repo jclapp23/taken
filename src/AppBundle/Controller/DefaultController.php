@@ -23,6 +23,92 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/email-file", name="email_file")
+     */
+    public function emailFileAction(Request $request)
+    {
+        if($request->isMethod("POST")){
+            $params = $this->get('request')->request->all();
+
+            $email = $params["email"];
+            $file = $params["file"];
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
+            $fileName = $webDir . "/" .$file;
+
+            $message = \Swift_Message::newInstance()
+                ->setTo([$email,'contact@setfive.com'])
+                ->setFrom('taken@setfive.com')
+                ->setSubject("Someone has created a Taken Madlib for you via taken.setfive.com")
+                ->setBody("Attached is the mp3 file containing the audio madlib, enjoy!",'text/html')
+            ;
+
+            $message->attach(\Swift_Attachment::fromPath($fileName));
+
+            $this->get('mailer')->send($message);
+
+            return new JsonResponse(array("isSent"=>true));
+
+        }else{
+            return new JsonResponse('error');
+        }
+
+        return new JsonResponse('error');
+    }
+
+    /**
+     * @Route("/story-two", name="story_two")
+     */
+    public function storyTwoAction(Request $request)
+    {
+
+        if ($request->isMethod("POST")) {
+
+            $params = $this->get('request')->request->all();
+            $animalOne = $params["animal_one"];
+            $personName = $params["person_name"];
+            $placeYouDislike = $params["place_you_dislike"];
+            $animalTwo = $params["animal_two"];
+            $pastTenseVerb = $params["past_tense_verb"];
+            $somethingYouValue = $params["something_you_value"];
+            $country = $params["country"];
+            $pluralNoun = $params["plural_noun"];
+            $singularNoun = $params["singular_noun"];
+
+            $lines = array(
+                "1"=>"Hello, I have kidnapped your pet $animalOne named $personName and taken them to the $placeYouDislike",
+                "2"=>"What are you talking about $personName is not my daughter. Are you a crazy wild $animalTwo?",
+                "3"=>"You better be careful or else $personName will be $pastTenseVerb. If you don't have $somethingYouValue for me, what do you have?",
+                "4"=>"I have had enough with your idle threats, I'm going to sell $personName to $country for three bags of $pluralNoun and a $singularNoun."
+            );
+
+            $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
+
+            $takenFileNames = array(
+                "1"=>"/Let my daughter go.mp3",
+                "2"=>"/I dont know.mp3",
+                "3"=>"/Skills.mp3",
+                "4"=>"/I will kill you.mp3",
+            );
+
+            foreach($lines as $k=>$line){
+                $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
+                $files[] = $baseFilePath.$takenFileNames[$k];
+            }
+
+            $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
+
+            $finalFile = $this->combineMultipleMP3Files('final'.uniqid().'.mp3', $files);
+
+            return new JsonResponse(array("filename"=>$finalFile));
+
+        }else{
+            return new JsonResponse('error');
+        }
+
+
+    }
+
+    /**
      * @Route("/story-one", name="story_one")
      */
     public function storyOneAction(Request $request)

@@ -136,9 +136,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        // story_one
-        if ($pathinfo === '/story-one') {
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::storyOneAction',  '_route' => 'story_one',);
+        // email_file
+        if ($pathinfo === '/email-file') {
+            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::emailFileAction',  '_route' => 'email_file',);
+        }
+
+        if (0 === strpos($pathinfo, '/story-')) {
+            // story_two
+            if ($pathinfo === '/story-two') {
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::storyTwoAction',  '_route' => 'story_two',);
+            }
+
+            // story_one
+            if ($pathinfo === '/story-one') {
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::storyOneAction',  '_route' => 'story_one',);
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
