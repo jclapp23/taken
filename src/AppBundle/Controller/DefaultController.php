@@ -37,9 +37,9 @@ class DefaultController extends Controller
 
             $message = \Swift_Message::newInstance()
                 ->setTo([$email,'contact@setfive.com'])
-                ->setFrom('taken@setfive.com')
+                ->setFrom('TakenMadlibs@setfive.com')
                 ->setSubject("Someone has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Attached is the mp3 file containing the audio madlib, enjoy!",'text/html')
+                ->setBody("Attached is the mp3 file containing the audio madlib created via http://taken.setfive.com/, enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));

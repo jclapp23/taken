@@ -196,7 +196,7 @@
 
                     <div class="audio-player" style="display:none">
                         <audio  controls >
-                            <source src="#" type="audio/mpeg">
+                            <source src="#">
                             Your browser does not support the audio element.
                         </audio>
                         <p>Want to save MP3 file? Just right click audio player above and choose Save Audio As.</p>
@@ -224,8 +224,6 @@
     <script>
 
         $(function() {
-
-
 
             var emailFileUrl = '{{ url('email_file') }}';
 
@@ -266,7 +264,8 @@
                     if(data.filename){
 
                         $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
-                        $('.audio-player').attr("src",data.filename).show();
+                        $('.audio-player audio').attr("src",data.filename).show();
+                        $('.audio-player').show();
                         $('#emailToFriend').attr("data-file",data.filename);
                         $('.madlib-actions').show();
 
@@ -297,7 +296,8 @@
                     if(data.filename){
 
                         $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
-                        $('.audio-player').attr("src",data.filename).show();
+                        $('.audio-player audio').attr("src",data.filename).show();
+                        $('.audio-player').show();
                         $('#emailToFriend').attr("data-file",data.filename);
                         $('.madlib-actions').show();
 
