@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!-- Menu -->
+	<nav class="menu" id="theMenu">
+		<div class="menu-wrap">
+			<h1 class="logo"><a href="index.html#home">Minimal</a></h1>
+			<i class="icon-remove menu-close"></i>
+			<a href="#home" class="smoothScroll">Home</a>
+			<a href="#about" class="smoothScroll">About</a>
+			<a href="#portfolio" class="smoothScroll">Portfolio</a>
+			<a href="#contact" class="smoothScroll">Contact</a>
+			<a href="#"><i class="icon-facebook"></i></a>
+			<a href="#"><i class="icon-twitter"></i></a>
+			<a href="#"><i class="icon-dribbble"></i></a>
+			<a href="#"><i class="icon-envelope"></i></a>
+		</div>
+		
+		<!-- Menu button -->
+		<!--<div id="menuToggle"><i class="icon-reorder"></i></div>-->
+	</nav>
+
+	<!-- ========== HEADER SECTION ========== -->
+	<section id="home" name="home"></section>
+	<div id="headerwrap">
+		<div class="container">
+			<!--<div class="logo">
+				<img src="{{ asset('bundles/app/img/logo.png') }}">
+			</div>
+			<br>-->
+			<div class="row">
+				<h1>TAKEN AUDIO MADLIBS</h1>
+				<div class="col-lg-6 col-lg-offset-3">
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /headerwrap -->
+	
+
+	<!-- ========== ABOUT SECTION ========== -->
+	<section id="about" name="about"></section>
+	<div id="f">
+		<div class="container">
+			<div class="row">
+				<h3>Fill Out the Form</h3>
+				<p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
+
+				<div class="col-lg-6 col-lg-offset-3">
+                    <form id="story-one-form" class="form-horizontal" >
+                        <fieldset>
+
+                       <p class="text-center">Story One: A Mysterious Call</p>
+
+                             <div class="form-group">
+                                <label for="animalOne" class="control-label col-xs-2">Animal One</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="animalOne" name="animal_one" placeholder="Enter an animal" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="personName" class="control-label col-xs-2">Person Name</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="personName" name="person_name" placeholder="Enter name of a person you know" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="placeYouDislike" class="control-label col-xs-2">Place you dislike</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="placeYouDislike" name="place_you_dislike" placeholder="Enter the name of a place you dislike" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="animalTwo" class="control-label col-xs-2">Animal Two</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="animalTwo" name="animal_two" placeholder="Enter a different animal than above" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pastTenseVerb" class="control-label col-xs-2">Past Tense Verb</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="pastTenseVerb" name="past_tense_verb" placeholder="Enter a past tense verb, ie 'destroyed' " required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="somethingYouValue" class="control-label col-xs-2">Something You Value</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="somethingYouValue" name="something_you_value" placeholder="Enter something you value (noun)" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country" class="control-label col-xs-2">Name of a Country</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="country" name="country" placeholder="Enter the name of a country" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pluralNoun" class="control-label col-xs-2">Plural Noun</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="pluralNoun" name="plural_noun" placeholder="Enter a plural noun" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="singularNoun" class="control-label col-xs-2">Singular Noun</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="singularNoun" name="singular_noun" placeholder="Enter a singular noun" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Generate Audio Madlib</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+				</div>								
+			</div>
+		</div><!-- /container -->
+	</div><!-- /f -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Processing Audio Madlib</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: 100%;">
+                            <span class="sr-only">100% Complete</span>
+                        </div>
+                    </div>
+
+                    <audio class="audio-player" controls style="display:none">
+                        <source src="#" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio><br><br>
+
+                    <div class="btn-group madlib-actions" role="group" aria-label="..." style="display:none">
+                        <button type="button" class="btn btn-default">Download</button>
+                        <button type="button" class="btn btn-default">Email</button>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <script>
+
+        $(function() {
+
+            var storyOneUrl = '{{ url('story_one') }}';
+
+            $('#story-one-form').on("submit",function(){
+
+                $('#modal').modal('show');
+
+                $.ajax({
+                    url: storyOneUrl,
+                    type: "post",
+                    data: $(this).serialize()
+                }).done(function (data){
+
+                    if(data.filename){
+
+                        $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-striped').addClass('progress-bar-success');
+                        $('.audio-player').attr("src",data.filename).show();
+                        //$('.madlib-actions').show();
+
+                    }else{
+                        alert('Woops! Something went wrong..');
+                    }
+                });
+
+                return false;
+
+            });
+        });
+
+    </script>
+
+{% endblock %}

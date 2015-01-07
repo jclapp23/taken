@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Taken Audio Madlibs</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('bundles/app/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.min.css') }}">
+
+    <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/modernizr.custom.js') }}"></script>
+	
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{{ asset('bundles/app/js/html5shiv.js') }}"></script>
+      <script src="{{ asset('bundles/app/js/respond.min.js') }}"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-offset="0" data-target="#theMenu">
+		
+	{% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{{ asset('bundles/app/js/classie.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/app/js/smoothscroll.js') }}"></script>
+	<script src="{{ asset('bundles/app/js/main.js') }}"></script>
+</body>
+</html>
