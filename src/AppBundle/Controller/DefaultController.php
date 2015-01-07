@@ -92,7 +92,7 @@ class DefaultController extends Controller
 
             foreach($lines as $k=>$line){
                 $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
-                $files[] = $baseFilePath.$takenFileNames[$k];
+                //$files[] = $baseFilePath.$takenFileNames[$k];
             }
 
             $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
