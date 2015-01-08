@@ -31,16 +31,19 @@ class DefaultController extends Controller
             $params = $this->get('request')->request->all();
 
             $email = $params["email"];
+            $title = $params["title"];
             $file = $params["file"];
             $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
             $fileName = $webDir . "/" .$file;
+
+            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Madlib'>madlib</a>";
 
             $message = \Swift_Message::newInstance()
                 ->setTo([$email])
                 ->setBcc(['contact@setfive.com'])
                 ->setFrom('TakenMadlibs@setfive.com')
                 ->setSubject("Someone has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Attached is the MP3 file containing the audio madlib someone created for you via http://taken.setfive.com/, enjoy!",'text/html')
+                ->setBody("Attached is the MP3 file containing the audio $wikiLink someone created for you themed: $title via http://taken.setfive.com/, enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));
@@ -64,7 +67,10 @@ class DefaultController extends Controller
 
         if ($request->isMethod("POST")) {
 
+            $title = 'A Mysterious Call';
+
             $params = $this->get('request')->request->all();
+
             $animalOne = $params["animal_one"];
             $personName = $params["person_name"];
             $placeYouDislike = $params["place_you_dislike"];
@@ -100,7 +106,7 @@ class DefaultController extends Controller
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
-            return new JsonResponse(array("filename"=>$filename));
+            return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
             return new JsonResponse('error');
@@ -117,25 +123,36 @@ class DefaultController extends Controller
 
         if ($request->isMethod("POST")) {
 
+            $title = 'Confused Telemarketer';
+
             $params = $this->get('request')->request->all();
-            $animalOne = $params["animal_one"];
+
             $personName = $params["person_name"];
-            $placeYouDislike = $params["place_you_dislike"];
-            $animalTwo = $params["animal_two"];
+            $adjOne = $params["adjective_one"];
+            $company = $params["company"];
+            $adjTwo = $params["adjective_two"];
+            $singularNounOne = $params["singular_noun_one"];
+            $pluralNounOne = $params["plural_noun_one"];
+            $pluralNounTwo = $params["plural_noun_two"];
+            $adjThree = $params["adjective_three"];
+            $presentTenseVerbOne = $params["present_tense_verb_one"];
+            $pluralNounThree = $params["plural_noun_three"];
+            $pluralNounFour = $params["plural_noun_three"];
+            $singularNounTwo = $params["singular_noun_two"];
+            $pluralNounFive = $params["plural_noun_five"];
             $pastTenseVerb = $params["past_tense_verb"];
-            $somethingYouValue = $params["something_you_value"];
-            $country = $params["country"];
-            $pluralNoun = $params["plural_noun"];
-            $singularNoun = $params["singular_noun"];
+            $singularNounThree = $params["singular_noun_three"];
+            $adjFour = $params["adjective_four"];
+            $presentTenseVerbTwo = $params["present_tense_verb_two"];
+            $animal = $params["animal"];
 
             $lines = array(
-                "1"=>"Good evening this [name of someone you know] a [adj to describe a person] telemarketer for [name of company], how are you today?",
-                "2"=>"I just introduced myself, I'm afraid I don't understand you I am not looking for random. If you don't have money what do you have to offer?",
-                "3"=>"I'm not sure what you mean by people like me. I'm just a telemarketer. I'm a [adjective] person who loves [present tense verb] with [plural noun]. Last time I called
-I spoke with your daughter and she said you might be interested in buying [plural noun].",
-                "4"=>"I did not kidnap your daughter, I have never met her. You are being a [derogatory adjective] [noun]. If you threaten me again I will call the [plural noun] and tell them you brutally [past tense verb] me with a [adj 3] [tangible noun].",
-                "5"=>"Who in the sam's hell was that? I did not take Amanda, how many times do I have to say it. It's like talking to a wall. So what is next, what are you going to do?",
-                "6"=>"You are becoming very aggressive. I need to go milk a goat. I hope to never see or hear from you again. Wish me luck."
+                "1"=>"Good evening this is $personName a $adjOne telemarketer for $company, how are you doing?",
+                "2"=>"I just introduced myself you $adjTwo $singularNounOne. I'm afraid I don't understand you. I am not looking for ransom. If you don't have money what do you have to offer?",
+                "3"=>"I'm not sure what you mean by people like me. I'm just a telemarketer who likes $pluralNounOne and $pluralNounTwo. I'm a $adjThree person who loves $presentTenseVerbOne with $pluralNounThree . Last time I called I spoke with your daughter and she said you might be interested in buying $pluralNounFour.",
+                "4"=>"I did not kidnap your daughter, I have never met her. You are being a $adjTwo $singularNounTwo. If you threaten me again I will call the $pluralNounFive and tell them you brutally $pastTenseVerb me with a $adjFour $singularNounThree.",
+                "5"=>"Who in the sam's hell was that? I did not take Amanda, how many times do I have to say it. So what is next, what are you going to do?",
+                "6"=>"You are becoming very aggressive. I need to go $presentTenseVerbTwo a $animal. I hope to never see or hear from you again. Wish me luck."
             );
 
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
@@ -158,7 +175,7 @@ I spoke with your daughter and she said you might be interested in buying [plura
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
-            return new JsonResponse(array("filename"=>$filename));
+            return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
             return new JsonResponse('error');
@@ -175,23 +192,34 @@ I spoke with your daughter and she said you might be interested in buying [plura
 
         if ($request->isMethod("POST")) {
 
+            $title = 'Bizarre Job Interview';
+
             $params = $this->get('request')->request->all();
-            $animalOne = $params["animal_one"];
+
+            $company = $params["company"];
+            $jobTitle = $params["job_title"];
+            $career = $params["career"];
             $personName = $params["person_name"];
-            $placeYouDislike = $params["place_you_dislike"];
-            $animalTwo = $params["animal_two"];
-            $pastTenseVerb = $params["past_tense_verb"];
-            $somethingYouValue = $params["something_you_value"];
-            $country = $params["country"];
-            $pluralNoun = $params["plural_noun"];
-            $singularNoun = $params["singular_noun"];
+            $singularNounOne = $params["singular_noun_one"];
+            $pluralNounOne = $params["plural_noun_one"];
+            $adjOne = $params["adjective_one"];
+            $adjTwo = $params["adjective_two"];
+            $singularNounTwo = $params["singular_noun_two"];
+            $feeling = $params["feeling"];
+            $pluralNounTwo = $params["plural_noun_two"];
+            $adjThree = $params["adjective_three"];
+            $adjFour = $params["adjective_four"];
+            $presentTenseVerbOne = $params["present_tense_verb_one"];
+            $pluralNounThree = $params["plural_noun_three"];
+            $pluralNounFour = $params["plural_noun_three"];
+            $animals = $params["animals"];
 
             $lines = array(
-                "1"=>"Thank you for coming into [company name] for the job interview my name is Amanda. I am the [job title].",
-                "2"=>"Sorry I we have had a lot of candidates interviewing for this position. It's hard to keep track of everyone. How about you tell me why you are a good fit for a career in [career].",
-                "3"=>"I'm not sure why you want to be a nightmare that is not good. Anyways, a bit about me. I am the [job title] of the [noun] production facility. I deal with [plural nouns] and [adjective] people all the time. I need help with these job responsibilities.",
-                "4"=>"I'm pretty sure I just introduced myself but my name is Amanda. Do you have something you want to tell me?",
-                "5"=>"Who are these people? Why are they in my office? Why have they tied me up with rope and taped [noun] over my eyes. What do you have to say to these people?",
+                "1"=>"Thank you for coming into $company for the job interview my name is Amanda. I am the $jobTitle.",
+                "2"=>"I am sorry we have had a lot of $adjThree $pluralNounTwo interviewing for this position and it's hard to keep track of everyone. How about you tell me why you are a good fit for a career in $career.",
+                "3"=>"I'm not sure why you want to be a nightmare, that is not a good thing. Anyways, a bit about me. I work for $personName who is the supervisor of the of the $singularNounOne production facility. I deal with $pluralNounOne and $adjOne people all the time. I need help with these job responsibilities.",
+                "4"=>"I'm pretty sure I just introduced myself but my name is Amanda. You are a $adjTwo $singularNounTwo. I'm $feeling, do you have something you want to tell me?",
+                "5"=>"Who are these $adjFour people? Why are they setting up a $animals petting zoo? Why have they $presentTenseVerbOne with $pluralNounThree and $pluralNounFour. What do you have to say to these people?",
             );
 
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
@@ -213,7 +241,7 @@ I spoke with your daughter and she said you might be interested in buying [plura
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
-            return new JsonResponse(array("filename"=>$filename));
+            return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
             return new JsonResponse('error');
@@ -230,24 +258,31 @@ I spoke with your daughter and she said you might be interested in buying [plura
 
         if ($request->isMethod("POST")) {
 
+            $title = 'Parent Teacher Conference';
+
             $params = $this->get('request')->request->all();
-            $animalOne = $params["animal_one"];
-            $personName = $params["person_name"];
-            $placeYouDislike = $params["place_you_dislike"];
-            $animalTwo = $params["animal_two"];
-            $pastTenseVerb = $params["past_tense_verb"];
-            $somethingYouValue = $params["something_you_value"];
-            $country = $params["country"];
-            $pluralNoun = $params["plural_noun"];
-            $singularNoun = $params["singular_noun"];
+
+            $properName = $params["proper_name"];
+            $schoolSubject = $params["school_subject"];
+            $feelingOne = $params["feeling_one"];
+            $adjOne = $params["adjective_one"];
+            $adjTwo = $params["adjective_two"];
+            $feelingTwo = $params["feeling_two"];
+            $singularNounOne = $params["singular_noun_one"];
+            $pluralNounOne = $params["plural_noun_one"];
+            $place = $params["place"];
+            $adjThree = $params["adjective_three"];
+            $pastTenseVerbOne = $params["past_tense_verb_one"];
+            $singularNounTwo = $params["singular_noun_two"];
+            $personNameTwo = $params["person_name_two"];
 
             $lines = array(
-                "1"=>"Hello my name is Mr. Smith. I am your daughters 5th grade teacher thank you for coming to the parent teacher conference. I can't recall if we have met before tonight.",
-                "2"=>"I'm really sorry about that. I'm glad you did find me because Id like to talk about any concerns you might have this semester.",
-                "3"=>"It is very normal for a father to want their daughter to be safe. We keep a very close eye on the students. Sometimes we will keep the students after class for additional help and to make sure they are doing well even if they don't want to.",
-                "4"=>"I don't understand, what do have against me?",
-                "5"=>"I do not want your money I am beginning to feel uncomfortable. Is this a joke, what else do you have hidden up your sleeve?",
-                "6"=>"I'm leaving the school immediately and driving as far away from here as possible. You have scared me with your aggressive behavior. Please leave me alone.",
+                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
+                "2"=>"I'm really $feelingOne about that. I'm glad you did find me because Id like to talk about any concerns you might have this semester.",
+                "3"=>"It is very $adjOne for a father to want their daughter to be $adjTwo. We keep a very close eye on the $pluralNounOne. Sometimes we will keep the students after class for additional help and to make sure they are doing well even if they don't want to.",
+                "4"=>"I don't understand, what do have against me? I am just a $singularNounTwo and really try to model my life after $personNameTwo",
+                "5"=>"I do not want your money I am beginning to feel $feelingTwo. Is this a joke, what else do you have hidden up your $singularNounOne?",
+                "6"=>"I'm leaving the school immediately and driving to the $place as fast as $adjThree possible. You have $pastTenseVerbOne me with your aggressive behavior. Please leave me alone.",
             );
 
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
@@ -270,7 +305,7 @@ I spoke with your daughter and she said you might be interested in buying [plura
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
-            return new JsonResponse(array("filename"=>$filename));
+            return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
             return new JsonResponse('error');

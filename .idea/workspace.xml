@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11c67e5-4f3a-429b-bf75-8f9fc37314c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/symfony/symfony" afterPath="$PROJECT_DIR$/vendor/symfony/symfony" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="taken.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DefaultController.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DefaultController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="7" selection-start="624" selection-end="624" vertical-scroll-proportion="-0.15919812" vertical-offset="495" max-vertical-offset="5790">
+            <state line="36" column="45" selection-start="1084" selection-end="1084" vertical-scroll-proportion="-7.0588236" vertical-offset="180" max-vertical-offset="6315">
               <folding>
                 <element signature="e#40#62#0" expanded="true" />
               </folding>
@@ -43,7 +41,11 @@
         <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="46" column="0" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="1185">
-              <folding />
+              <folding>
+                <marker date="1420661809000" expanded="true" signature="1245:1911" placeholder="doctrine:" />
+                <marker date="1420661809000" expanded="true" signature="1259:1819" placeholder="dbal:" />
+                <marker date="1420661809000" expanded="true" signature="1824:1911" placeholder="orm:" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,11 +68,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="42" selection-start="11722" selection-end="11722" vertical-scroll-proportion="-14.791667" vertical-offset="2600" max-vertical-offset="4845">
+            <state line="37" column="115" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.5048077" vertical-offset="135" max-vertical-offset="8760">
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -96,8 +99,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Command/PurgeMp3FilesCommand.php" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
       </list>
     </option>
   </component>
@@ -181,6 +184,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taken" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taken" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Default" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,7 +444,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="96" selection-start="717" selection-end="805" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="705">
           <folding>
-            <element signature="e#37#102#0" expanded="true" />
+            <element signature="e#37#102#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -440,7 +473,11 @@
     <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="0" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="1185">
-          <folding />
+          <folding>
+            <marker date="1420661809000" expanded="true" signature="1245:1911" placeholder="doctrine:" />
+            <marker date="1420661809000" expanded="true" signature="1259:1819" placeholder="dbal:" />
+            <marker date="1420661809000" expanded="true" signature="1824:1911" placeholder="orm:" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -458,23 +495,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="42" selection-start="11722" selection-end="11722" vertical-scroll-proportion="-14.791667" vertical-offset="2600" max-vertical-offset="4845">
+        <state line="36" column="45" selection-start="1084" selection-end="1084" vertical-scroll-proportion="-7.0588236" vertical-offset="180" max-vertical-offset="6315">
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#40#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="7" selection-start="624" selection-end="624" vertical-scroll-proportion="-0.15919812" vertical-offset="495" max-vertical-offset="5790">
+        <state line="37" column="115" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.5048077" vertical-offset="135" max-vertical-offset="8760">
           <folding>
-            <element signature="e#40#62#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
