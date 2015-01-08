@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11c67e5-4f3a-429b-bf75-8f9fc37314c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
     </list>
     <ignored path="taken.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="298" column="52" selection-start="18871" selection-end="18871" vertical-scroll-proportion="-5.25" vertical-offset="4050" max-vertical-offset="8370">
+            <state line="411" column="33" selection-start="25809" selection-end="25809" vertical-scroll-proportion="0.43786296" vertical-offset="5788" max-vertical-offset="8370">
               <folding>
                 <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -53,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="30" selection-start="603" selection-end="603" vertical-scroll-proportion="0.49342105" vertical-offset="0" max-vertical-offset="5625">
+            <state line="12" column="14" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5625">
               <folding />
             </state>
           </provider>
@@ -79,8 +78,8 @@
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
       </list>
     </option>
   </component>
@@ -460,9 +459,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="14" selection-start="246" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="298" column="52" selection-start="18871" selection-end="18871" vertical-scroll-proportion="-5.25" vertical-offset="4050" max-vertical-offset="8370">
+        <state line="411" column="33" selection-start="25809" selection-end="25809" vertical-scroll-proportion="0.43786296" vertical-offset="5788" max-vertical-offset="8370">
           <folding>
             <element signature="n#style#0;n#h1#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -471,13 +477,6 @@
             <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="30" selection-start="603" selection-end="603" vertical-scroll-proportion="0.49342105" vertical-offset="0" max-vertical-offset="5625">
-          <folding />
         </state>
       </provider>
     </entry>
