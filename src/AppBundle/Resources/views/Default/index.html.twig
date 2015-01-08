@@ -21,7 +21,7 @@
 	<div id="headerwrap">
 		<div class="container">
 			<div class="row">
-				<h1>TAKEN AUDIO MADLIBS</h1>
+				<h1 style="text-shadow: 4px 4px 2px rgba(10, 10, 10, 1);">TAKEN AUDIO MADLIBS</h1>
 				<div class="col-lg-6 col-lg-offset-3">
                     <h4><a target='_blank' href='http://en.wikipedia.org/wiki/Madlib'>What the hell is a madlib? Read wiki here.</a></h4>
 				</div>
@@ -42,7 +42,9 @@
                     <form id="story-one-form" class="form-horizontal story-forms" >
                         <fieldset>
 
-                         <p class="text-center">Story One: A Mysterious Call</p>
+                             <p class="text-center">Story One: A Mysterious Call</p>
+
+                            <p>Confused? <a id="populate-example" href="#" >click here</a> to populate an example.</p>
 
                              <div class="form-group">
                                 <label for="animalOne" class="control-label col-xs-2">Animal One</label>
@@ -239,6 +241,7 @@
                         <fieldset>
                             <p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
                             <p class="text-center">Story Three: Bizarre Job Interview</p>
+
 
 
                             <div class="form-group">
@@ -484,9 +487,8 @@
                         <p>Want to save MP3 file? Just right click audio player above and choose Save Audio As.</p>
                     </div>
 
-                    <input type="email" class="form-control" id="email" name="email" placeholder="enter email" required><br>
-
                     <div class="madlib-actions" style="display:none">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="enter email" required><br>
                         <button id="emailToFriend" type="button" data-file="" class="btn btn-info">Email to a friend</button>
                     </div><br>
 
@@ -508,6 +510,19 @@
         $(function() {
 
             var emailFileUrl = '{{ url('email_file') }}';
+
+            $('#populate-example').on("click",function(){
+                $('#animalOne').val('sloth');
+                $('#personName').val('Benny the Jet');
+                $('#placeYouDislike').val('Porta Potty');
+                $('#animalTwo').val('warthog');
+                $('#pastTenseVerb').val('smacked');
+                $('#somethingYouValue').val('air fresheners');
+                $('#country').val('Canada');
+                $('#pluralNoun').val('froot loops');
+                $('#singularNoun').val('toad');
+                return false;
+            });
 
             $('#emailToFriend').on("click",function(){
 
@@ -558,8 +573,7 @@
                         $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
                         $('.audio-player audio').attr("src",data.filename).show();
                         $('.audio-player').show();
-                        $('#emailToFriend').attr("data-file",data.filename);
-                        $('#emailToFriend').attr("data-title",data.title);
+                        $('#emailToFriend').attr("data-file",data.filename).attr("data-title",data.title);
                         $('.madlib-actions').show();
 
                     }else{
@@ -571,7 +585,17 @@
 
             });
 
+            $('#modal').on('hidden.bs.modal', function () {
+                $('.progress').addClass('progress-striped').addClass('active').find('.progress-bar').removeClass('progress-bar-success');
+                $('.audio-player').hide();
+                $('.madlib-actions').hide();
+            })
+
+
         });
+
+
+
 
     </script>
 

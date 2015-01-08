@@ -7,6 +7,11 @@
  * URL: http://blacktie.co
  */
 
+.story-forms .form-control{
+    font-size: 18px;
+    height: 60px;
+}
+
 body {
   background-color: #f2f2f2;
     font-family: 'EB Garamond', serif;
