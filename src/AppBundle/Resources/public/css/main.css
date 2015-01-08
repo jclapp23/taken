@@ -7,6 +7,32 @@
  * URL: http://blacktie.co
  */
 
+
+/* Smartphones ----------- */
+@media only screen and (max-width : 480px) {
+    .nav-tabs{
+        width: 100% !important;
+    }
+
+    .nav-tabs > li{
+        width:100% !important;
+        display:block !important;
+    }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 481px) and (max-width : 768px) {
+    .nav-tabs{
+        width: 100% !important;
+    }
+
+    .nav-tabs > li{
+        width:100% !important;
+        display:block !important;
+    }
+}
+
 .story-forms .form-control{
     font-size: 18px;
     height: 60px;
@@ -29,7 +55,7 @@
 
 
 .nav-tabs{
-    width: 58%;
+    width: 680px;
     display: block;
     margin: 0 auto;
     margin-bottom: 40px;
