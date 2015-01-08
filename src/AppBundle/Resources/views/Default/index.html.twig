@@ -536,6 +536,8 @@
             });
 
             $('#modal').on('hidden.bs.modal', function () {
+                $('#emailToFriend').attr("data-file","").attr("data-title","");
+                $('#email').val("");
                 $('.progress').addClass('progress-striped').addClass('active').find('.progress-bar').removeClass('progress-bar-success');
                 $('.audio-player').hide();
                 $('.madlib-actions').hide();
