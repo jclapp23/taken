@@ -55,7 +55,7 @@
       <file leaf-file-name="main.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="36" selection-start="452" selection-end="452" vertical-scroll-proportion="0.39473686" vertical-offset="0" max-vertical-offset="5715">
+            <state line="186" column="0" selection-start="3618" selection-end="3618" vertical-scroll-proportion="0.31638417" vertical-offset="2510" max-vertical-offset="5715">
               <folding />
             </state>
           </provider>
@@ -475,7 +475,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="36" selection-start="452" selection-end="452" vertical-scroll-proportion="0.39473686" vertical-offset="0" max-vertical-offset="5715">
+        <state line="186" column="0" selection-start="3618" selection-end="3618" vertical-scroll-proportion="0.31638417" vertical-offset="2510" max-vertical-offset="5715">
           <folding />
         </state>
       </provider>
