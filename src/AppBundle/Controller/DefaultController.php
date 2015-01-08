@@ -330,6 +330,7 @@ class DefaultController extends Controller
         $cmd = "/usr/bin/mp3wrap $finalFile $filenamesSpaced" ." 2> /dev/null";
         exec($cmd);
 
+        //for some reason mp3 wrap appends _MP3WRAP to filename, remove it so the output file is consistent
         $mp3wrapFileName = str_replace(".mp3","_MP3WRAP.mp3",$finalFile);
         rename($mp3wrapFileName, $finalFile);
 
