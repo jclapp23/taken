@@ -10,6 +10,7 @@ use Stichoza\Google\GoogleTranslate;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Process\ProcessBuilder;
 
 class DefaultController extends Controller
 {
@@ -34,8 +35,7 @@ class DefaultController extends Controller
             $title = $params["title"];
             $file = $params["file"];
 
-            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
-            $fileName = $webDir . "/" .$file;
+            $fileName = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/". $file;
 
             $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Madlib'>madlib</a>";
 
@@ -89,24 +89,25 @@ class DefaultController extends Controller
                 "4"=>"I have had enough with your idle threats, I'm going to sell $personName to $country for three bags of $pluralNoun and a $singularNoun."
             );
 
-            $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
+            $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio/");
 
             $takenFileNames = array(
-                "1"=>"/Let\ my\ daughter\ go.mp3",
-                "2"=>"/I\ dont\ know.mp3",
+                "1"=>"/Letmydaughtergo.mp3",
+                "2"=>"/Idontknow.mp3",
                 "3"=>"/Skills.mp3",
-                "4"=>"/I\ will\ kill\ you.mp3",
+                "4"=>"/Iwillkillyou.mp3",
             );
 
             //convert each user entered line into mp3 and add the file path to files array
             //place the corresponding "taken" response mp3 file path in the files array right after the user line
             foreach($lines as $k=>$line){
-                $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
+                $files[] =$this->convertTextToMP3($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
+
             //add one last line
-            $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
+            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
 
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
@@ -163,20 +164,20 @@ class DefaultController extends Controller
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
 
             $takenFileNames = array(
-                "1"=>"/I\ dont\ know.mp3",
+                "1"=>"/Idontknow.mp3",
                 "2"=>"/Skills.mp3",
-                "3"=>"/Let\ my\ daughter\ go.mp3",
-                "4"=>"/They\ got\ Amanda\.mp3",
-                "5"=>"/I\ will\ kill\ you.mp3",
+                "3"=>"/Letmydaughtergo.mp3",
+                "4"=>"/TheygotAmanda\.mp3",
+                "5"=>"/Iwillkillyou.mp3",
                 "6"=>"/Goodluck.mp3",
             );
 
             foreach($lines as $k=>$line){
-                $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
+                $files[] = $this->convertTextToMP3($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-            $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
+            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
@@ -230,19 +231,19 @@ class DefaultController extends Controller
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
 
             $takenFileNames = array(
-                "1"=>"/You\ dont\ remember\ me.mp3",
+                "1"=>"/Youdont rememberme.mp3",
                 "2"=>"/Skills.mp3",
-                "3"=>"/I\ dont\ know.mp3",
-                "4"=>"/Going\ to\ take\ you.mp3",
-                "5"=>"/I\ will\ kill\ you.mp3",
+                "3"=>"/Idontknow.mp3",
+                "4"=>"/Goingtotakeyou.mp3",
+                "5"=>"/Iwillkillyou.mp3",
             );
 
             foreach($lines as $k=>$line){
-                $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
+                $files[] = $this->convertTextToMP3($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-            $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
+            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
@@ -293,20 +294,20 @@ class DefaultController extends Controller
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
 
             $takenFileNames = array(
-                "1"=>"/You\ dont\ remember\ me.mp3",
-                "2"=>"/Not\ comfortable.mp3",
-                "3"=>"/Let\ my\ daughter\ go.mp3",
-                "4"=>"/I\ dont\ know.mp3",
+                "1"=>"/Youdontrememberme.mp3",
+                "2"=>"/Notcomfortable.mp3",
+                "3"=>"/Letmydaughtergo.mp3",
+                "4"=>"/Idontknow.mp3",
                 "5"=>"/Skills.mp3",
-                "6"=>"/I\ will\ kill\ you.mp3",
+                "6"=>"/Iwillkillyou.mp3",
             );
 
             foreach($lines as $k=>$line){
-                $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
+                $files[] = $this->convertTextToMP3($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-            $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
+            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
 
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
@@ -322,17 +323,18 @@ class DefaultController extends Controller
     private function combineMp3Files($files,$outfile)
     {
 
-        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
+        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
 
-        $filenamesSpaced = join(' ',$files);
-        $finalFile = "$webDir/$outfile";
+        $cmd = "avconv ";
+        foreach($files as $f)
+            if(filesize($f)>1)
+            $cmd.=' -i '.$f;
 
-        $cmd = "/usr/bin/mp3wrap $finalFile $filenamesSpaced" ." 2> /dev/null";
-        exec($cmd);
+        $cmd.=' '.$webDir.$outfile;
+var_dump($cmd);
+        exec($cmd,$out);
 
-        //for some reason mp3 wrap appends _MP3WRAP to filename, remove it so the output file is consistent
-        $mp3wrapFileName = str_replace(".mp3","_MP3WRAP.mp3",$finalFile);
-        rename($mp3wrapFileName, $finalFile);
+
 
         return $outfile;
 
@@ -341,24 +343,24 @@ class DefaultController extends Controller
 
     private function splitString($str)
 	{
-	    $ret=array();
-	    $arr=explode(" ",$str);
-	    $constr='';
-	    for($i=0;$i<count($arr);$i++)
+	    $ret = [];
+	    $temp ='';
+        foreach(explode(" ",$str) as $word)
 	    {
-		if(strlen($constr.$arr[$i]." ") < 98)
-		{
-		    $constr =$constr.$arr[$i]." ";
-		}
-		else
-		{
-		    $ret[] =$constr;
-		    $constr='';
-		    $i--; //add the word back.
-		}
+            if(strlen($temp.$word." ") < 98)
+            {
+                $temp.=$word." ";
+            }
+            else
+            {
+                $ret[] = $temp;
+                $temp = $word;
+            }
 	 
 	    }
-	    $ret[]=$constr;
+
+	    $ret[]=$temp;
+
 	    return $ret;
 	}
 
@@ -371,7 +373,7 @@ class DefaultController extends Controller
 		    curl_close($ch);
 		    if($output === false)   
 		    return false;
-		 
+
 		    $fp= fopen($file,"wb");
 		    fwrite($fp,$output);
 		    fclose($fp);
@@ -380,9 +382,12 @@ class DefaultController extends Controller
 	 }
 
 
-	private function converTextToMP3($str,$outfile)
+	private function convertTextToMP3($str)
 	{
 	    $base_url='http://translate.google.com/translate_tts?tl=en-uk&ie=UTF-8&q=';
+
+        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+
 
         //split string into seprate 100 char lines since google tts api limit is 100 char
         $chunkedLines = $this->splitString($str);
@@ -391,11 +396,13 @@ class DefaultController extends Controller
 	    foreach($chunkedLines as $line)
 	    {
 
+
             $url= $base_url.urlencode($line);
-
-            $filename =md5($line).".mp3";
-
-            if(!$this->downloadMP3($url,$filename))
+            echo $url."\n";
+            $filename =$webDir.md5($line.".mp3").".mp3";
+            echo $line." - ".$filename."\n";
+            
+            if(!file_exists($filename)&&!$this->downloadMP3($url,$filename))
             {
                 echo "Failed to Download URL.".$url."n";
             }
@@ -405,20 +412,15 @@ class DefaultController extends Controller
             }
 	    }
 
-        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
-
-        // 100+ char string are split into mutliple mp3 files so combine them back into one if this is the case
-        if(count($chunkedLines) > 1){
-            $filename = $this->combineMp3Files($files,'combined_line_'.uniqid().'.mp3');
-            //save file in web directory
-            $finalFile = "$webDir/$filename";
-        }else{
-            //if its just one string under 100 char move the file to the web directory
-            rename($files[0], "$webDir/$outfile");
-            $finalFile = "$webDir/$outfile";
+        // Make sure there are more than one file that needs to be combined and the combo doesn't already exists.
+        $combinedFinalFileName = md5(implode('',$files)).'.mp3';
+        if(count($files) > 1&&!file_exists($webDir.$combinedFinalFileName)){
+           $this->combineMp3Files($files,$combinedFinalFileName);
+           return $webDir.$combinedFinalFileName;
         }
 
-        return $finalFile;
+
+        return $files[0];
 	}
   
 }
