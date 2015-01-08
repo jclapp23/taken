@@ -12,6 +12,30 @@
     height: 60px;
 }
 
+.btn-primary{
+    background-color:#f85c37;
+    border-color:#f85c37;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color:#f85c37;
+    border-color:#f85c37;
+}
+
+
+.nav-tabs{
+    width: 58%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    margin-top:40px;
+}
+
 body {
   background-color: #f2f2f2;
     font-family: 'EB Garamond', serif;
