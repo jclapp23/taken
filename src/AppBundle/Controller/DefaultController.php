@@ -33,6 +33,7 @@ class DefaultController extends Controller
             $email = $params["email"];
             $title = $params["title"];
             $file = $params["file"];
+
             $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
             $fileName = $webDir . "/" .$file;
 
@@ -97,13 +98,17 @@ class DefaultController extends Controller
                 "4"=>"/I\ will\ kill\ you.mp3",
             );
 
+            //convert each user entered line into mp3 and add the file path to files array
+            //place the corresponding "taken" response mp3 file path in the files array right after the user line
             foreach($lines as $k=>$line){
                 $files[] = $this->converTextToMP3($line,"outfile".uniqid().".mp3");
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
+            //add one last line
             $files[] = $this->converTextToMP3("Ok, bye yeeeee","outfile".uniqid().".mp3");
 
+            //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
@@ -324,11 +329,9 @@ class DefaultController extends Controller
 
         $cmd = "/usr/bin/mp3wrap $finalFile $filenamesSpaced" ." 2> /dev/null";
         exec($cmd);
+
         $mp3wrapFileName = str_replace(".mp3","_MP3WRAP.mp3",$finalFile);
         rename($mp3wrapFileName, $finalFile);
-
-        $cmd = "/usr/bin/mp3wrap $finalFile $filenamesSpaced" ." 2> /dev/null";
-        exec($cmd);
 
         return $outfile;
 
@@ -379,15 +382,17 @@ class DefaultController extends Controller
 	private function converTextToMP3($str,$outfile)
 	{
 	    $base_url='http://translate.google.com/translate_tts?tl=en-uk&ie=UTF-8&q=';
-	    $words = $this->splitString($str);
+
+        //split string into seprate 100 char lines since google tts api limit is 100 char
+        $chunkedLines = $this->splitString($str);
 
         $files=array();
-	    foreach($words as $word)
+	    foreach($chunkedLines as $line)
 	    {
 
-            $url= $base_url.urlencode($word);
+            $url= $base_url.urlencode($line);
 
-            $filename =md5($word).".mp3";
+            $filename =md5($line).".mp3";
 
             if(!$this->downloadMP3($url,$filename))
             {
@@ -401,10 +406,13 @@ class DefaultController extends Controller
 
         $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
 
-        if(count($words) > 1){
+        // 100+ char string are split into mutliple mp3 files so combine them back into one if this is the case
+        if(count($chunkedLines) > 1){
             $filename = $this->combineMp3Files($files,'combined_line_'.uniqid().'.mp3');
+            //save file in web directory
             $finalFile = "$webDir/$filename";
         }else{
+            //if its just one string under 100 char move the file to the web directory
             rename($files[0], "$webDir/$outfile");
             $finalFile = "$webDir/$outfile";
         }
