@@ -37,7 +37,7 @@ class DefaultController extends Controller
             $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/');
             $fileName = $webDir . "/" .$file;
 
-            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Madlib'>madlib</a>";
+            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>madlib</a>";
 
             $message = \Swift_Message::newInstance()
                 ->setTo([$email])
