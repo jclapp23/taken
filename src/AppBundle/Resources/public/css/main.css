@@ -8,6 +8,8 @@
  */
 
 
+h2{color:#414141}
+
 /* Smartphones ----------- */
 @media only screen and (max-width : 480px) {
     .nav-tabs{
