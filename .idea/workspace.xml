@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e11c67e5-4f3a-429b-bf75-8f9fc37314c0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
     </list>
     <ignored path="taken.iws" />
@@ -71,7 +70,7 @@
       <file leaf-file-name="index.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="115" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.5048077" vertical-offset="135" max-vertical-offset="8760">
+            <state line="454" column="22" selection-start="30902" selection-end="30902" vertical-scroll-proportion="-1.1814904" vertical-offset="7793" max-vertical-offset="8760">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -506,7 +505,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="115" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.5048077" vertical-offset="135" max-vertical-offset="8760">
+        <state line="454" column="22" selection-start="30902" selection-end="30902" vertical-scroll-proportion="-1.1814904" vertical-offset="7793" max-vertical-offset="8760">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
