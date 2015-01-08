@@ -8,7 +8,7 @@
  */
 
 
-h2{color:#414141}
+h2{color:#414141 !important}
 
 /* Smartphones ----------- */
 @media only screen and (max-width : 480px) {
