@@ -557,6 +557,7 @@
                 $('#name').val("");
                 $('.progress').addClass('progress-striped').addClass('active').find('.progress-bar').removeClass('progress-bar-success');
                 $('.audio-player').hide();
+                $('audio').each(function(){ this.pause() });
                 $('.madlib-actions').hide();
             });
 
