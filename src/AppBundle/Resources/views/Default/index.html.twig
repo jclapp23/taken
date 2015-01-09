@@ -439,6 +439,7 @@
                     </div>
 
                     <div class="madlib-actions" style="display:none">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="enter your name" required><br>
                         <input type="email" class="form-control" id="email" name="email" placeholder="enter email" required><br>
                         <button id="emailToFriend" type="button" data-file="" class="btn btn-info">Email to a friend</button>
                     </div><br>
@@ -482,10 +483,15 @@
                     return false;
                 }
 
+                if($('#name').val() == ''){
+                    alert('You must enter an name!');
+                    return false;
+                }
+
                 $.ajax({
                     url: emailFileUrl,
                     type: "post",
-                    data: { email: $('#email').val(), file: $(this).attr("data-file"), title: $(this).attr("data-title") }
+                    data: { email: $('#email').val(), file: $(this).attr("data-file"), title: $(this).attr("data-title"),name:$('#name').val() }
                 }).done(function (data){
 
                     if(data.isSent)
@@ -498,6 +504,15 @@
             });
 
             $('.story-forms').on("submit",function(){
+
+                $(this).find('input').each(function(){
+                    if($(this).val() == ''){
+                        alert('Please enter values for ever field in the story!');
+                        return false;
+                    }
+
+                });
+
 
                 if($(this).attr("id") == 'story-one-form' )
                     var storyUrl = '{{ url('story_one') }}';
@@ -539,6 +554,7 @@
             $('#modal').on('hidden.bs.modal', function () {
                 $('#emailToFriend').attr("data-file","").attr("data-title","");
                 $('#email').val("");
+                $('#name').val("");
                 $('.progress').addClass('progress-striped').addClass('active').find('.progress-bar').removeClass('progress-bar-success');
                 $('.audio-player').hide();
                 $('.madlib-actions').hide();
