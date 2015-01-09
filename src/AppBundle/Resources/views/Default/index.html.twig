@@ -554,6 +554,7 @@
             $('#modal').on('hidden.bs.modal', function () {
                 $('#emailToFriend').attr("data-file","").attr("data-title","");
                 $('#email').val("");
+                $('.email-success').hide();
                 $('#name').val("");
                 $('.progress').addClass('progress-striped').addClass('active').find('.progress-bar').removeClass('progress-bar-success');
                 $('.audio-player').hide();
