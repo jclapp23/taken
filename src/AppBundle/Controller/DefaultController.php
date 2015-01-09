@@ -38,13 +38,14 @@ class DefaultController extends Controller
             $fileName = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/". $file;
 
             $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>madlib</a>";
+            $takenLink = "<a target='_blank' href='http://www.imdb.com/title/tt0936501/'>Taken</a>";
 
             $message = \Swift_Message::newInstance()
                 ->setTo([$email])
                 ->setBcc(['contact@setfive.com'])
                 ->setFrom('TakenMadlibs@setfive.com')
                 ->setSubject("$name has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Attached is the audio file containing the audio $wikiLink $name created for you themed: $title via http://taken.setfive.com/, enjoy!",'text/html')
+                ->setBody("Hey! Attached is the $takenLink audio file containing the audio $wikiLink that $name created for you based on the story theme: $title via http://taken.setfive.com/, enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));
@@ -110,7 +111,7 @@ class DefaultController extends Controller
             $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
 
             //combine all the mp3 files in the files array into one big mp3 file
-            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.mp3');
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
@@ -184,7 +185,7 @@ class DefaultController extends Controller
             $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
 
             //combine all the mp3 files in the files array into one big mp3 file
-            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.mp3');
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
@@ -254,7 +255,7 @@ class DefaultController extends Controller
             $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
 
             //combine all the mp3 files in the files array into one big mp3 file
-            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.mp3');
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
@@ -322,7 +323,7 @@ class DefaultController extends Controller
             $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
 
             //combine all the mp3 files in the files array into one big mp3 file
-            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.mp3');
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
