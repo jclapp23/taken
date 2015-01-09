@@ -537,7 +537,7 @@
                     if(data.filename){
 
                         $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
-                        $('.audio-player audio').attr("src",data.filename).show();
+                        $('.audio-player audio').attr("src","/audio/" + data.filename ).show();
                         $('.audio-player').show();
                         $('#emailToFriend').attr("data-file",data.filename).attr("data-title",data.title);
                         $('.madlib-actions').show();
