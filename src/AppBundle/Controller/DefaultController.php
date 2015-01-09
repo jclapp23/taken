@@ -338,12 +338,10 @@ class DefaultController extends Controller
 
         $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
 
-        $cmd = "oggcat " . $webDir.$outfile;
+        $cmd = "oggCat " . $webDir.$outfile;
         foreach($files as $f)
             if(filesize($f)>1)
                 $cmd.=' '.$f;
-
-        echo $cmd;
 
         exec($cmd,$out);
 
