@@ -106,7 +106,6 @@ class DefaultController extends Controller
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-
             //add one last line
             $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
 
@@ -180,10 +179,6 @@ class DefaultController extends Controller
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-
-            //add one last line
-            $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
-
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
@@ -250,10 +245,6 @@ class DefaultController extends Controller
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-
-            //add one last line
-            $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
-
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
@@ -318,10 +309,6 @@ class DefaultController extends Controller
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-
-            //add one last line
-            $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
-
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
@@ -355,6 +342,8 @@ class DefaultController extends Controller
         foreach($files as $f)
             if(filesize($f)>1)
                 $cmd.=' '.$f;
+
+        echo $cmd;
 
         exec($cmd,$out);
 
