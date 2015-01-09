@@ -107,7 +107,7 @@ class DefaultController extends Controller
             }
 
             //add one last line
-            $files[] = $this->convertTextToOgg("Ok, bye yeeeee");
+            $files[] = $this->convertTextToOgg("Ok, bye");
 
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
