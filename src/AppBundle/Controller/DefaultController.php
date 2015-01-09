@@ -415,11 +415,9 @@ class DefaultController extends Controller
 	    foreach($chunkedLines as $line)
 	    {
 
-
             $url= $base_url.urlencode($line);
-            echo $url."\n";
+
             $filename =$webDir.md5($line.".mp3").".mp3";
-            echo $line." - ".$filename."\n";
             
             if(!file_exists($filename)&&!$this->downloadMP3($url,$filename))
             {
@@ -433,7 +431,7 @@ class DefaultController extends Controller
 	    }
 
         // Make sure there are more than one file that needs to be combined and the combo doesn't already exists.
-        $combinedFinalFileName = md5(implode('',$files)).'.mp3';
+        $combinedFinalFileName = md5(implode('',$files)).'.ogg';
         if(count($files) > 1&&!file_exists($webDir.$combinedFinalFileName)){
            $this->combineOggFiles($files,$combinedFinalFileName);
            return $webDir.$combinedFinalFileName;
