@@ -45,7 +45,7 @@ class DefaultController extends Controller
                 ->setBcc(['contact@setfive.com'])
                 ->setFrom('TakenMadlibs@setfive.com')
                 ->setSubject("$name has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Hey! Attached is the $takenLink audio file containing the audio $wikiLink that $name created for you based on the story theme: $title via http://taken.setfive.com/, enjoy!",'text/html')
+                ->setBody("Hey! Attached is the audio file containing the $takenLink audio $wikiLink that $name created for you based on the story theme: $title via http://taken.setfive.com/, enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));
@@ -96,7 +96,7 @@ class DefaultController extends Controller
                 "1"=>"/letmydaughtergo.ogg",
                 "2"=>"/idontknow.ogg",
                 "3"=>"/skills.ogg",
-                "4"=>"/iwillkillyou.ogg",
+                "4"=>"/iwillkillyou.ogg"
             );
 
             //convert each user entered line into mp3 and add the file path to files array
