@@ -37,7 +37,7 @@ class DefaultController extends Controller
 
             $fileName = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/". $file;
 
-            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>madlib</a>";
+            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>MadLib</a>";
             $takenLink = "<a target='_blank' href='http://www.imdb.com/title/tt0936501/'>Taken</a>";
 
             $message = \Swift_Message::newInstance()
