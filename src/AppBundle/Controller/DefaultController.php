@@ -295,7 +295,7 @@ class DefaultController extends Controller
             $personNameTwo = $params["person_name_two"];
 
             $lines = array(
-                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher. Thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
+                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher. I would like to thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
                 "2"=>"I'm really feeling $feelingOne about that last comment. I'm glad you found me because I would like to talk about any concerns you might have this semester.",
                 "3"=>"It is very $adjOne for a father to want their daughter to be $adjTwo. We keep a very close eye on the $pluralNounOne. Sometimes we will keep the students after class for additional help and to make sure they are doing well even if they don't want to.",
                 "4"=>"I don't understand, what do have against me? I am just a $singularNounTwo and really try to model my life after $personNameTwo",
