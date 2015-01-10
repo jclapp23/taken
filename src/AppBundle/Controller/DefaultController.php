@@ -295,12 +295,12 @@ class DefaultController extends Controller
             $personNameTwo = $params["person_name_two"];
 
             $lines = array(
-                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
-                "2"=>"I'm really $feelingOne about that. I'm glad you did find me because Id like to talk about any concerns you might have this semester.",
+                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher. Thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
+                "2"=>"I'm really feeling $feelingOne about that last comment. I'm glad you found me because I would like to talk about any concerns you might have this semester.",
                 "3"=>"It is very $adjOne for a father to want their daughter to be $adjTwo. We keep a very close eye on the $pluralNounOne. Sometimes we will keep the students after class for additional help and to make sure they are doing well even if they don't want to.",
                 "4"=>"I don't understand, what do have against me? I am just a $singularNounTwo and really try to model my life after $personNameTwo",
                 "5"=>"I do not want your money I am beginning to feel $feelingTwo. Is this a joke, what else do you have hidden up your $singularNounOne?",
-                "6"=>"I'm leaving the school immediately and driving to the $place as fast as $adjThree possible. You have $pastTenseVerbOne me with your aggressive behavior. Please leave me alone.",
+                "6"=>"I'm leaving the school immediately and driving to $place as fast as $adjThree possible. You have $pastTenseVerbOne me with your aggressive behavior. Please leave me alone.",
             );
 
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
