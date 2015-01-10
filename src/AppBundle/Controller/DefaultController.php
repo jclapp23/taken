@@ -112,6 +112,10 @@ class DefaultController extends Controller
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
+
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
@@ -182,6 +186,10 @@ class DefaultController extends Controller
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
+
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
@@ -248,6 +256,10 @@ class DefaultController extends Controller
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
+
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
@@ -312,6 +324,10 @@ class DefaultController extends Controller
             //combine all the mp3 files in the files array into one big mp3 file
             $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
+
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
@@ -332,6 +348,22 @@ class DefaultController extends Controller
         return $outfile;
 
     }
+
+    private function convertOggToWavFile($ogg,$outfile)
+    {
+
+        //ffmpeg -i audio.ogg audio.wav
+
+        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+
+        $cmd = "avconv -i $ogg ".$webDir.$outfile;
+
+        exec($cmd,$out);
+
+        return $outfile;
+
+    }
+
 
     private function combineOggFiles($files,$outfile)
     {
