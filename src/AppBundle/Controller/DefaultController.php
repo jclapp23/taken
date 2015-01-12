@@ -45,7 +45,7 @@ class DefaultController extends Controller
                 ->setBcc(['contact@setfive.com'])
                 ->setFrom('TakenMadlibs@setfive.com')
                 ->setSubject("$name has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Hey! Attached is the audio file containing the $takenLink audio $wikiLink that $name created for you based on the story theme: $title via http://taken.setfive.com/, enjoy!",'text/html')
+                ->setBody("Hey!<br><br>Attached is the audio file containing the $takenLink audio $wikiLink that $name created for you based on the story theme: $title via http://taken.setfive.com/<br><br>Enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));
