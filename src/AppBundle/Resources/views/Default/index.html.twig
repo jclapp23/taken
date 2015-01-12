@@ -23,7 +23,7 @@
 			<div class="row">
 				<h1 style="text-shadow: 4px 4px 2px rgba(10, 10, 10, 1);">TAKEN AUDIO MADLIBS</h1>
 				<div class="col-lg-6 col-lg-offset-3">
-                    <h4><a style="background: rgba(255, 255, 255, 0.5);color:#941D01;padding:2px" target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>What the hell is a madlib? Read wiki here.</a></h4>
+                    <h4 style="margin: 60px 0px;"><a style="background: rgba(255, 255, 255, 0.5);color:#941D01;padding:2px" target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>What the hell is a madlib? Read wiki here.</a></h4>
 				</div>
 			</div>
 		</div><!-- /container -->
@@ -37,7 +37,7 @@
 		<div class="container">
 
 			<div class="row">
-				<h2>If you think you have the required skills, fill out one of the forms below to generate a story.</h2>
+				<h2>If you think you have a very particular set of skills, fill out one of the forms below to generate a story.</h2>
 
                 <ul class="nav nav-tabs">
                     <li><a href="#story-one-form" class="smoothScroll">A Mysterious Call</a></li>
@@ -341,7 +341,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <input type="text" class="form-control" id="feelingOne" name="feelingOne" placeholder="Enter a feeling, ie 'victimized '  " required>
+                                    <input type="text" class="form-control" id="feelingOne" name="feeling_one" placeholder="Enter a feeling, ie 'victimized '  " required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -357,7 +357,7 @@
 
                             <div class="form-group">
                                 <div class="col-xs-12">
-                                    <input type="text" class="form-control" id="feelingTwo" name="feelingTwo" placeholder="Enter another feeling, ie 'sober' " required>
+                                    <input type="text" class="form-control" id="feelingTwo" name="feeling_two" placeholder="Enter another feeling, ie 'sober' " required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -420,7 +420,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">Processing Audio Madlib</h3>
+                    <h3 class="modal-title">Processing Audio Madlib (may take up to 30 secs)</h3>
                 </div>
                 <div class="modal-body">
 
@@ -432,13 +432,14 @@
 
                     <div class="audio-player" style="display:none">
                         <audio  controls >
-                            <source src="#" type="audio/mpeg">
+                            <source src="#">
                             Your browser does not support the audio element.
                         </audio>
-                        <p>Want to save MP3 file? Just right click audio player above and choose Save Audio As.</p>
+                        <p>Want to save audio file? Just right click audio player above and choose Save Audio As.</p>
                     </div>
 
                     <div class="madlib-actions" style="display:none">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="enter your name" required><br>
                         <input type="email" class="form-control" id="email" name="email" placeholder="enter email" required><br>
                         <button id="emailToFriend" type="button" data-file="" class="btn btn-info">Email to a friend</button>
                     </div><br>
@@ -482,10 +483,15 @@
                     return false;
                 }
 
+                if($('#name').val() == ''){
+                    alert('You must enter an name!');
+                    return false;
+                }
+
                 $.ajax({
                     url: emailFileUrl,
                     type: "post",
-                    data: { email: $('#email').val(), file: $(this).attr("data-file"), title: $(this).attr("data-title") }
+                    data: { email: $('#email').val(), file: $(this).attr("data-file"), title: $(this).attr("data-title"),name:$('#name').val() }
                 }).done(function (data){
 
                     if(data.isSent)
@@ -498,6 +504,15 @@
             });
 
             $('.story-forms').on("submit",function(){
+
+                $(this).find('input').each(function(){
+                    if($(this).val() == ''){
+                        alert('Please enter values for ever field in the story!');
+                        return false;
+                    }
+
+                });
+
 
                 if($(this).attr("id") == 'story-one-form' )
                     var storyUrl = '{{ url('story_one') }}';
@@ -522,7 +537,7 @@
                     if(data.filename){
 
                         $('.progress').removeClass('progress-striped').removeClass('active').find('.progress-bar').addClass('progress-bar-success');
-                        $('.audio-player audio').attr("src",data.filename).show();
+                        $('.audio-player audio').attr("src","/audio/" + data.filename ).show();
                         $('.audio-player').show();
                         $('#emailToFriend').attr("data-file",data.filename).attr("data-title",data.title);
                         $('.madlib-actions').show();
@@ -539,8 +554,11 @@
             $('#modal').on('hidden.bs.modal', function () {
                 $('#emailToFriend').attr("data-file","").attr("data-title","");
                 $('#email').val("");
+                $('.email-success').hide();
+                $('#name').val("");
                 $('.progress').addClass('progress-striped').addClass('active').find('.progress-bar').removeClass('progress-bar-success');
                 $('.audio-player').hide();
+                $('audio').each(function(){ this.pause() });
                 $('.madlib-actions').hide();
             });
 
@@ -548,8 +566,16 @@
 
         });
 
+    </script>
 
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-3761258-18', 'auto');
+        ga('send', 'pageview');
 
     </script>
 

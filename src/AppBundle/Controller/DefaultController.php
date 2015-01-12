@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use GetId3\GetId3Core;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -33,18 +32,20 @@ class DefaultController extends Controller
 
             $email = $params["email"];
             $title = $params["title"];
+            $name = $params["name"];
             $file = $params["file"];
 
             $fileName = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/". $file;
 
-            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>madlib</a>";
+            $wikiLink = "<a target='_blank' href='http://en.wikipedia.org/wiki/Mad_Libs'>MadLib</a>";
+            $takenLink = "<a target='_blank' href='http://www.imdb.com/title/tt0936501/'>Taken</a>";
 
             $message = \Swift_Message::newInstance()
                 ->setTo([$email])
                 ->setBcc(['contact@setfive.com'])
                 ->setFrom('TakenMadlibs@setfive.com')
-                ->setSubject("Someone has created a Taken Madlib for you via taken.setfive.com")
-                ->setBody("Attached is the MP3 file containing the audio $wikiLink someone created for you themed: $title via http://taken.setfive.com/, enjoy!",'text/html')
+                ->setSubject("$name has created a Taken Madlib for you via taken.setfive.com")
+                ->setBody("Hey! Attached is the audio file containing the $takenLink audio $wikiLink that $name created for you based on the story theme: $title via http://taken.setfive.com/, enjoy!",'text/html')
             ;
 
             $message->attach(\Swift_Attachment::fromPath($fileName));
@@ -92,25 +93,28 @@ class DefaultController extends Controller
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio/");
 
             $takenFileNames = array(
-                "1"=>"/Letmydaughtergo.mp3",
-                "2"=>"/Idontknow.mp3",
-                "3"=>"/Skills.mp3",
-                "4"=>"/Iwillkillyou.mp3",
+                "1"=>"/letmydaughtergo.ogg",
+                "2"=>"/idontknow.ogg",
+                "3"=>"/skills.ogg",
+                "4"=>"/iwillkillyou.ogg"
             );
 
             //convert each user entered line into mp3 and add the file path to files array
             //place the corresponding "taken" response mp3 file path in the files array right after the user line
             foreach($lines as $k=>$line){
-                $files[] =$this->convertTextToMP3($line);
+                $files[] = $this->convertTextToOgg($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-
             //add one last line
-            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
+            $files[] = $this->convertTextToOgg("Ok, bye");
 
             //combine all the mp3 files in the files array into one big mp3 file
-            $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
+
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
@@ -164,29 +168,33 @@ class DefaultController extends Controller
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
 
             $takenFileNames = array(
-                "1"=>"/Idontknow.mp3",
-                "2"=>"/Skills.mp3",
-                "3"=>"/Letmydaughtergo.mp3",
-                "4"=>"/TheygotAmanda\.mp3",
-                "5"=>"/Iwillkillyou.mp3",
-                "6"=>"/Goodluck.mp3",
+                "1"=>"/idontknow.ogg",
+                "2"=>"/skills.ogg",
+                "3"=>"/letmydaughtergo.ogg",
+                "4"=>"/theygotamanda.ogg",
+                "5"=>"/iwillkillyou.ogg",
+                "6"=>"/goodluck.ogg",
             );
 
+            //convert each user entered line into mp3 and add the file path to files array
+            //place the corresponding "taken" response mp3 file path in the files array right after the user line
             foreach($lines as $k=>$line){
-                $files[] = $this->convertTextToMP3($line);
+                $files[] = $this->convertTextToOgg($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
+            //combine all the mp3 files in the files array into one big mp3 file
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
-            $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
             return new JsonResponse('error');
         }
-
 
     }
 
@@ -231,28 +239,32 @@ class DefaultController extends Controller
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
 
             $takenFileNames = array(
-                "1"=>"/Youdont rememberme.mp3",
-                "2"=>"/Skills.mp3",
-                "3"=>"/Idontknow.mp3",
-                "4"=>"/Goingtotakeyou.mp3",
-                "5"=>"/Iwillkillyou.mp3",
+                "1"=>"/youdontrememberme.ogg",
+                "2"=>"/skills.ogg",
+                "3"=>"/idontknow.ogg",
+                "4"=>"/goingtotakeyou.ogg",
+                "5"=>"/iwillkillyou.ogg",
             );
 
+            //convert each user entered line into mp3 and add the file path to files array
+            //place the corresponding "taken" response mp3 file path in the files array right after the user line
             foreach($lines as $k=>$line){
-                $files[] = $this->convertTextToMP3($line);
+                $files[] = $this->convertTextToOgg($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
+            //combine all the mp3 files in the files array into one big mp3 file
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
-            $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
         }else{
             return new JsonResponse('error');
         }
-
 
     }
 
@@ -283,33 +295,38 @@ class DefaultController extends Controller
             $personNameTwo = $params["person_name_two"];
 
             $lines = array(
-                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
-                "2"=>"I'm really $feelingOne about that. I'm glad you did find me because Id like to talk about any concerns you might have this semester.",
+                "1"=>"Hello my name is $properName. I am your daughters 5th grade $schoolSubject teacher. I would like to thank you for coming to the parent teacher conferences. I can't recall if we have met before tonight.",
+                "2"=>"I'm really feeling $feelingOne about that last comment. I'm glad you found me because I would like to talk about any concerns you might have this semester.",
                 "3"=>"It is very $adjOne for a father to want their daughter to be $adjTwo. We keep a very close eye on the $pluralNounOne. Sometimes we will keep the students after class for additional help and to make sure they are doing well even if they don't want to.",
                 "4"=>"I don't understand, what do have against me? I am just a $singularNounTwo and really try to model my life after $personNameTwo",
                 "5"=>"I do not want your money I am beginning to feel $feelingTwo. Is this a joke, what else do you have hidden up your $singularNounOne?",
-                "6"=>"I'm leaving the school immediately and driving to the $place as fast as $adjThree possible. You have $pastTenseVerbOne me with your aggressive behavior. Please leave me alone.",
+                "6"=>"I'm leaving the school immediately and driving to $place as fast as $adjThree possible. You have $pastTenseVerbOne me with your aggressive behavior. Please leave me alone.",
             );
 
             $baseFilePath = realpath($this->get('kernel')->getRootDir()."/../bin/audio");
 
             $takenFileNames = array(
-                "1"=>"/Youdontrememberme.mp3",
-                "2"=>"/Notcomfortable.mp3",
-                "3"=>"/Letmydaughtergo.mp3",
-                "4"=>"/Idontknow.mp3",
-                "5"=>"/Skills.mp3",
-                "6"=>"/Iwillkillyou.mp3",
+                "1"=>"/youdontrememberme.ogg",
+                "2"=>"/notcomfortable.ogg",
+                "3"=>"/letmydaughtergo.ogg",
+                "4"=>"/idontknow.ogg",
+                "5"=>"/skills.ogg",
+                "6"=>"/iwillkillyou.ogg",
             );
 
+            //convert each user entered line into mp3 and add the file path to files array
+            //place the corresponding "taken" response mp3 file path in the files array right after the user line
             foreach($lines as $k=>$line){
-                $files[] = $this->convertTextToMP3($line);
+                $files[] = $this->convertTextToOgg($line);
                 $files[] = $baseFilePath.$takenFileNames[$k];
             }
 
-            $files[] = $this->convertTextToMP3("Ok, bye yeeeee");
+            //combine all the mp3 files in the files array into one big mp3 file
+            $filename = $this->combineOggFiles($files,'taken_madlib_'.uniqid().'.ogg');
 
-            $filename = $this->combineMp3Files($files,'taken_madlib_'.uniqid().'.mp3');
+            //convert to wav
+            $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+            $filename = $this->convertOggToWavFile($webDir.$filename,'taken_madlib_'.uniqid().'.wav');
 
             return new JsonResponse(array("filename"=>$filename,"title"=>$title));
 
@@ -317,29 +334,52 @@ class DefaultController extends Controller
             return new JsonResponse('error');
         }
 
-
     }
 
-    private function combineMp3Files($files,$outfile)
+    private function convertMp3ToOggFile($mp3,$outfile)
     {
 
         $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
 
-        $cmd = "avconv ";
-        foreach($files as $f)
-            if(filesize($f)>1)
-            $cmd.=' -i '.$f;
+        $cmd = "avconv -i $mp3 -acodec libvorbis -q:a 5 ".$webDir.$outfile;
 
-        $cmd.=' '.$webDir.$outfile;
-var_dump($cmd);
         exec($cmd,$out);
-
-
 
         return $outfile;
 
     }
 
+    private function convertOggToWavFile($ogg,$outfile)
+    {
+
+        //ffmpeg -i audio.ogg audio.wav
+
+        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+
+        $cmd = "avconv -i $ogg ".$webDir.$outfile;
+
+        exec($cmd,$out);
+
+        return $outfile;
+
+    }
+
+
+    private function combineOggFiles($files,$outfile)
+    {
+
+        $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
+
+        $cmd = "oggCat " . $webDir.$outfile;
+        foreach($files as $f)
+            if(filesize($f)>1)
+                $cmd.=' '.$f;
+
+        exec($cmd,$out);
+
+        return $outfile;
+
+    }
 
     private function splitString($str)
 	{
@@ -382,12 +422,11 @@ var_dump($cmd);
 	 }
 
 
-	private function convertTextToMP3($str)
+	private function convertTextToOgg($str)
 	{
 	    $base_url='http://translate.google.com/translate_tts?tl=en-uk&ie=UTF-8&q=';
 
         $webDir = realpath($this->get('kernel')->getRootDir() . '/../web/audio/')."/";
-
 
         //split string into seprate 100 char lines since google tts api limit is 100 char
         $chunkedLines = $this->splitString($str);
@@ -396,11 +435,9 @@ var_dump($cmd);
 	    foreach($chunkedLines as $line)
 	    {
 
-
             $url= $base_url.urlencode($line);
-            echo $url."\n";
+
             $filename =$webDir.md5($line.".mp3").".mp3";
-            echo $line." - ".$filename."\n";
             
             if(!file_exists($filename)&&!$this->downloadMP3($url,$filename))
             {
@@ -408,14 +445,15 @@ var_dump($cmd);
             }
             else
             {
-                $files[] = $filename;
+                $ogg = $this->convertMp3ToOggFile($filename,"ogg-".uniqid().'.ogg' );
+                $files[] = $webDir . $ogg;
             }
 	    }
 
         // Make sure there are more than one file that needs to be combined and the combo doesn't already exists.
-        $combinedFinalFileName = md5(implode('',$files)).'.mp3';
+        $combinedFinalFileName = md5(implode('',$files)).'.ogg';
         if(count($files) > 1&&!file_exists($webDir.$combinedFinalFileName)){
-           $this->combineMp3Files($files,$combinedFinalFileName);
+           $this->combineOggFiles($files,$combinedFinalFileName);
            return $webDir.$combinedFinalFileName;
         }
 
